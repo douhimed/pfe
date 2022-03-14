@@ -17,6 +17,7 @@ import java.util.List;
 
 public class DesignPatternsTests {
 
+    @Test
     void decorator_SHouldAddNewCapabilities() {
 
         /*
@@ -34,6 +35,7 @@ public class DesignPatternsTests {
          */
     }
 
+    @Test
     void singlent_SouldReturnTheSameHashAddress() {
 
         /*
@@ -43,6 +45,7 @@ public class DesignPatternsTests {
         */
     }
 
+    @Test
     void builder_SouldBuildObjectWithSameParams() {
 
         /*
@@ -58,6 +61,7 @@ public class DesignPatternsTests {
         */
     }
 
+    @Test
     void strategy_SouldReturnTheNameOfSortingStartegy() {
 
         /*
