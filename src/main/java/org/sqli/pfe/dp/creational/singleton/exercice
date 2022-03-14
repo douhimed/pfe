@@ -1,0 +1,6 @@
+/**
+ *
+ * Suppose we have multiple clients using this class, which has access to a shared resource (config).
+ * The purpose is to keep shared state between clients and to provide a global access point to this configuration.
+ *
+ */

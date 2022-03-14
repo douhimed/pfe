@@ -1,0 +1,7 @@
+/**
+ *
+ * Suppose we have client using new User class.
+ * The client is consuming our services, but we still use the old version
+ * The purpose is to adapt the old class for the client.
+ *
+ */
