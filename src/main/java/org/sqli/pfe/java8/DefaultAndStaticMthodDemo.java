@@ -4,7 +4,12 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.AbstractList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Builder
 @Getter
@@ -14,6 +19,8 @@ class ItemImpl extends AbstractItemUtilityClass implements Item {
 }
 
 interface Item {
+
+    String DEFAULT = "default";
 
     String getValue();
 
@@ -34,8 +41,8 @@ abstract class AbstractItemUtilityClass implements Item {
         Optional.of(item).map(Item::getValue).ifPresent(value -> item.setValue(value.trim()));
     }
 
-    public static Item create() {
-        return ItemImpl.builder().value("default").build();
+    public static List<Item> create(int size) {
+        return Collections.nCopies(size, create(DEFAULT));
     }
 }
 
