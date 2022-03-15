@@ -9,14 +9,4 @@ public class Product {
     private final double price;
     private final int quantity;
 
-    public Product(ProductBuilder productBuilder) {
-        this.label = null;
-        this.price = 0;
-        this.quantity = 0;
-    }
-
-    public static class ProductBuilder {
-
-    }
-
 }

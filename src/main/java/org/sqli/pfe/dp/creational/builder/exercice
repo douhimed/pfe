@@ -1,5 +1,5 @@
 /**
- * Create a builder
+ * Create a builder (static member class)
  * label is required
  * <p>
  * The creation is available only by the builder;
