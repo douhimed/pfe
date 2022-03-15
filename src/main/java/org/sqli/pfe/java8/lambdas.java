@@ -7,30 +7,24 @@ interface Test {
 }
 
 interface Validator {
-    boolean isValide(Object o); // valid if not null
+    boolean isValide(Object o);
 }
 
 class Log {
 
-    /*
-    void log(Test t) {
-        t.consume();
-    }
-
-    void log(Validator v, Object o) {
-        System.out.println(v.isValide(o));
-    }
+    /**
+     *
+     * create a log function with Test as param
+     *
+     * and second one with Validator and Object as params
+     *
      */
+
 }
 
 public class lambdas {
 
     public static void main(String[] args) {
-        /*
-        final Log log = new Log();
-        log.log(() -> System.out.println("Demo lambda"));
-        log.log(o -> Objects.nonNull(o), new Object());
-        log.log(Objects::nonNull, null);
-         */
+        // Tests
     }
 }
