@@ -1,6 +1,9 @@
 package org.sqli.pfe.java8;
 
 import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
 @SuppressWarnings("all")
 public class Exercice7 {
 
@@ -11,17 +14,8 @@ public class Exercice7 {
         Produit produitB = new Produit("ProduitB", 91);
         Produit produitC = new Produit("ProduitC", 5);
         Produit produitD = new Produit("ProduitD", 5);
-        Produit produitE = new Produit("ProduitE", 90);
-        Produit produitF = new Produit("ProduitF", 54);
-        Produit produitG = new Produit("ProduitG", 23);
-        Produit produitH = new Produit("ProduitH", 24);
-        Produit produitI = new Produit("ProduitI", 11);
-        Produit produitJ = new Produit("ProduitJ", 70);
-        Produit produitK = new Produit("ProduitK", 70);
-        Produit produitL = new Produit("ProduitL", 5);
-        Produit produitM = new Produit("ProduitM", 11);
-        Produit produitN = new Produit("ProduitN", 11);
-        Produit produitO = new Produit("ProduitO", 84);
+        Produit produitE = new Produit("ProduitE", 91);
+        Produit produitF = new Produit("ProduitF", 89);
 
 
         List<Produit> produits = Arrays.asList(
@@ -30,17 +24,18 @@ public class Exercice7 {
                 produitC,
                 produitD,
                 produitE,
-                produitF,
-                produitG,
-                produitH,
-                produitI,
-                produitJ,
-                produitK,
-                produitL,
-                produitM,
-                produitN,
-                produitO);
+                produitF);
 
+        old(produits);
+        newVersion(produits);
+    }
+
+    private static void newVersion(List<Produit> produits) {
+
+        System.out.println(produits.stream().collect(Collectors.groupingBy(Produit::getPrix)));
+    }
+
+    private static void old(List<Produit> produits) {
         Map<Double, List<Produit>> grouperParPrix = new HashMap<>();
 
         for (Produit produit : produits) {
@@ -55,6 +50,5 @@ public class Exercice7 {
         }
 
         System.out.printf("liste de produits groupés par prix : %s%n", grouperParPrix);
-
     }
 }

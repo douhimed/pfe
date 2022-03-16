@@ -10,6 +10,7 @@ public class Exercice4 {
     public static void main(String[] args) {
 
         //4 Vérifier que (tous/au moins un element) les éléments d’une liste vérifie une condition.
+
         // 4-1 tous vérifient une condition :  vérifier si tous les pays commencent par une majuscule :
 
         List<String> listePays = Arrays.asList("Egypt", "Algeria", "Kazakhstan",
@@ -20,6 +21,33 @@ public class Exercice4 {
                 "Bangladesh", "Syria", "Ireland",
                 "Italy");
 
+        tousParMajuscule(listePays);
+        auMoinsParS(listePays);
+
+    }
+
+    private static void auMoinsParS(List<String> listePays) {
+        boolean atLeastOneElementVerified = false;
+        for (String pays : listePays) {
+            if (pays.startsWith("S")) {
+                atLeastOneElementVerified = true;
+                break;
+            }
+
+        }
+        if (atLeastOneElementVerified) {
+            System.out.println("OLD : il existe au moins un pays qui commence par 'S' ");
+        } else {
+            System.out.println("OLD : il n'existe aucun pays qui commence par 'S' ");
+        }
+
+        System.out.println(listePays.stream().anyMatch(pays -> pays.charAt(0) == 'S')
+                ? "New : il existe au moins un pays qui commence par 'S' "
+                : "New : il n'existe aucun pays qui commence par 'S' ");
+
+    }
+
+    private static void tousParMajuscule(List<String> listePays) {
         boolean allElementsVerified = true;
 
         for (String pays : listePays) {
@@ -31,42 +59,14 @@ public class Exercice4 {
         }
 
         if (allElementsVerified) {
-            System.out.println("tous les pays commencent par une majuscule ");
+            System.out.println("OLD : tous les pays commencent par une majuscule ");
         } else {
-            System.out.println("il existe au moins un pays aui ne commence pas par une majuscule ");
+            System.out.println("OLD : il existe au moins un pays aui ne commence pas par une majuscule ");
         }
 
-        //4-2 au moins
-        boolean atLeastOneElementVerified = false;
-        for (String pays : listePays) {
-            if (pays.startsWith("S")) {
-                atLeastOneElementVerified = true;
-                break;
-            }
-
-        }
-
-        if (atLeastOneElementVerified) {
-            System.out.println("il existe au moins un pays qui commence par 'S' ");
-        } else {
-            System.out.println("il n'existe aucun pays qui commence par 'S' ");
-        }
-
-
-        listePays.stream().anyMatch(new Predicate<String>() {
-            @Override
-            public boolean test(String s) {
-                return s.startsWith("S");
-            }
-        });
-
-
-        listePays.stream().allMatch(new Predicate<String>() {
-            @Override
-            public boolean test(String pays) {
-                char premiereLettre = pays.charAt(0);
-                return (premiereLettre < 'A' || premiereLettre > 'Z');
-            }
-        });
+        System.out.println(listePays.stream().allMatch(pays -> pays.charAt(0) >= 'A' && pays.charAt(0) <= 'Z')
+                ? "New : tous les pays commencent par une majuscule "
+                : "New : il existe au moins un pays aui ne commence pas par une majuscule ");
     }
+
 }

@@ -17,19 +17,19 @@ public class InterfaceFonctionnelle {
 
 
     public static Integer multplication(Integer a, Integer b) {
-        return 0;
+        return faireCalcul(a, b, (s1, s2) -> s1 * s2);
     }
 
     public static Integer addition(Integer a, Integer b) {
-        return 0; // à compléter
+        return faireCalcul(a, b, (s1, s2) -> s1 + s2);
     }
 
     public static Integer soustraction(Integer a, Integer b) {
-        return 0; // à compléter
+        return faireCalcul(a, b, (s1, s2) -> s1 - s2);
     }
 
     public static int factoriel(int n) {
-        return 0;
+        return IntStream.rangeClosed(1, n).reduce(1, (a, b) -> a * b);
     }
 
     public static void main(String[] args) {

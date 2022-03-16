@@ -22,6 +22,12 @@ public class Exercice3 {
         System.out.printf("nombre des éléments avec dupplications = %d %n", paysAvecDuplications.size());
         Set<String> paysSansDuplications = new TreeSet<>(paysAvecDuplications);
         System.out.printf("nombre des éléments avec dupplications = %d %n", paysSansDuplications.size());
+        System.out.println("==============================");
+
+
+        paysAvecDuplications.stream().collect(Collectors.toSet()).forEach(System.out::println);
+        System.out.println("==============================");
+        paysAvecDuplications.stream().distinct().collect(Collectors.toList()).forEach(System.out::println);
 
     }
 }

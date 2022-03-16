@@ -2,7 +2,7 @@ package org.sqli.pfe.java8;
 
 import java.util.Objects;
 
-interface Test {
+interface Consumer {
     void consume();
 }
 
@@ -12,19 +12,23 @@ interface Validator {
 
 class Log {
 
-    /**
-     *
-     * create a log function with Test as param
-     *
-     * and second one with Validator and Object as params
-     *
-     */
+    public void consum(Consumer t) {
+        t.consume();
+    }
+
+    public boolean isValid(Validator v, Object o) {
+        return v.isValide(o);
+    }
 
 }
 
 public class lambdas {
 
     public static void main(String[] args) {
-        // Tests
+
+        Log log = new Log();
+        log.consum(() -> System.out.println("Consumer"));
+        System.out.println(log.isValid(Objects::nonNull, new Object()));
+
     }
 }

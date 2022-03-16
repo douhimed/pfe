@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @SuppressWarnings("all")
 public class Exercice6 {
 
@@ -13,36 +15,29 @@ public class Exercice6 {
         Produit produitA = new Produit("ProduitA", 89);
         Produit produitB = new Produit("ProduitB", 91);
         Produit produitC = new Produit("ProduitC", 5);
-        Produit produitD = new Produit("ProduitD", 5);
-        Produit produitE = new Produit("ProduitE", 90);
-        Produit produitF = new Produit("ProduitF", 54);
-        Produit produitG = new Produit("ProduitG", 23);
-        Produit produitH = new Produit("ProduitH", 24);
-        Produit produitI = new Produit("ProduitI", 11);
-        Produit produitJ = new Produit("ProduitJ", 70);
-        Produit produitK = new Produit("ProduitK", 70);
-        Produit produitL = new Produit("ProduitL", 5);
-        Produit produitM = new Produit("ProduitM", 11);
-        Produit produitN = new Produit("ProduitN", 11);
-        Produit produitO = new Produit("ProduitO", 84);
 
 
         List<Produit> produits = Arrays.asList(produitA,
                 produitB,
-                produitC,
-                produitD,
-                produitE,
-                produitF,
-                produitG,
-                produitH,
-                produitI,
-                produitJ,
-                produitK,
-                produitL,
-                produitM,
-                produitN,
-                produitO);
+                produitC);
 
+        old(produits);
+        newVersison(produits);
+    }
+
+    private static void newVersison(List<Produit> produits) {
+
+        Collections.sort(produits, Comparator.comparing((Produit::getPrix)));
+        System.out.println(produits);
+
+        Collections.sort(produits, Comparator.comparing((Produit::getPrix)).thenComparing(Produit::getLibelle));
+        System.out.println(produits);
+
+        final List<Produit> produitList = produits.stream().sorted(Comparator.comparing(Produit::getPrix)).collect(Collectors.toList());
+        System.out.println(produitList);
+    }
+
+    private static void old(List<Produit> produits) {
         Collections.sort(produits, new Comparator<Produit>() {
             @Override
             public int compare(Produit produitA, Produit produitB) {

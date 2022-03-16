@@ -3,6 +3,8 @@ package org.sqli.pfe.java8;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.BinaryOperator;
+import java.util.stream.Collectors;
 
 
 public class Exercice2 {
@@ -26,7 +28,11 @@ public class Exercice2 {
         }
 
         stringBuilder.append(names.get(i));
-        System.out.println(stringBuilder);
+        System.out.println("OLD : " + stringBuilder);
+
+        System.out.println(String.join(",", names));
+        System.out.println(names.stream().collect(Collectors.joining(",")));
+        names.stream().reduce((s, s2) -> s + "," + s2).ifPresent(System.out::println);
 
     }
 }

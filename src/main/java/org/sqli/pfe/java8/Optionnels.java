@@ -12,26 +12,20 @@ public class Optionnels {
     static Produit produitB = new Produit("ProduitB", 91);
     static Produit produitC = new Produit("ProduitC", 5);
     static Produit produitD = new Produit("ProduitD", 5);
-    static Produit produitE = new Produit("ProduitE", 90);
-    static Produit produitF = new Produit("ProduitF", 54);
-    static Produit produitG = new Produit("ProduitG", 23);
-    static Produit produitH = new Produit("ProduitH", 24);
 
     static List<Produit> produits = Arrays.asList(produitA,
             produitB,
             produitC,
-            produitD,
-            produitE,
-            produitF,
-            produitG,
-            produitH);
+            produitD);
 
     static Optional<Produit> chercherProduitParLibelle(String libelle) {
-       return null;
+        return produits.stream().filter(p -> p.getLibelle().equalsIgnoreCase(libelle)).findFirst();
     }
 
     public static void main(String[] args) {
 
-
+        chercherProduitParLibelle("ProduitA").ifPresent(p -> System.out.println(p.getPrix()));
+        chercherProduitParLibelle("ProduitB").ifPresent(p -> System.out.println(p.getPrix()));
+        chercherProduitParLibelle("ProduitZ").ifPresent(p -> System.out.println(p.getPrix()));
     }
 }

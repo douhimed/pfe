@@ -4,18 +4,20 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.AbstractList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @Builder
 @Getter
 @Setter
 class ItemImpl extends AbstractItemUtilityClass implements Item {
     private String value;
+
+    @Override
+    public String toString() {
+        return value;
+    }
 }
 
 interface Item {
@@ -25,24 +27,40 @@ interface Item {
     String getValue();
 
     void setValue(String value);
+
+    static Item create(String value) {
+        return ItemImpl.builder().value(value).build();
+    }
+
+    default void upperCase() {
+        Optional.of(this.getValue()).ifPresent(v -> this.setValue(v.toUpperCase()));
+    }
+
+    default void trim() {
+        Optional.of(this.getValue()).ifPresent(v -> this.setValue(v.trim()));
+    }
+
+    static List<Item> create(int size) {
+        return Collections.nCopies(size, create(DEFAULT));
+    }
 }
 
 abstract class AbstractItemUtilityClass implements Item {
 
     public static Item create(String value) {
-        return ItemImpl.builder().value(value).build();
+        return Item.create(value);
     }
 
     public static void upperCase(Item item) {
-        Optional.of(item).map(Item::getValue).ifPresent(value -> item.setValue(value.toUpperCase()));
+        item.upperCase();
     }
 
     public static void trim(Item item) {
-        Optional.of(item).map(Item::getValue).ifPresent(value -> item.setValue(value.trim()));
+        item.trim();
     }
 
     public static List<Item> create(int size) {
-        return Collections.nCopies(size, create(DEFAULT));
+        return Item.create(size);
     }
 }
 
@@ -56,5 +74,15 @@ public class DefaultAndStaticMthodDemo {
         System.out.println(item.getValue());
         AbstractItemUtilityClass.upperCase(item);
         System.out.println(item.getValue());
+
+        Item newItem = Item.create("   SQLI   ");
+        System.out.println(newItem);
+        newItem.trim();
+        System.out.println(newItem);
+        newItem.upperCase();
+        System.out.println(newItem);
+
+        List<Item> items = Item.create(3);
+        System.out.println(items);
     }
 }
